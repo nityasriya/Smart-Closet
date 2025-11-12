@@ -9,6 +9,20 @@ from datetime import datetime
 import io
 import base64
 
+
+import base64
+
+def get_base64_image(image_path):
+    with open(image_path, "rb") as img_file:
+        return base64.b64encode(img_file.read()).decode()
+
+# Load background image
+try:
+    bg_b64 = get_base64_image("bgphoto.png")
+except FileNotFoundError:
+    bg_b64 = None
+
+
 # -----------------------------------------------------
 # Page config
 # -----------------------------------------------------
@@ -928,3 +942,4 @@ elif st.session_state.current_page == 'assistant':
 else:
     st.session_state.current_page = 'home'
     st.rerun()
+
